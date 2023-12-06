@@ -1,4 +1,5 @@
 import random
+print("welcome to the rock paper seizure game. Type 0 for rock, 1 for paper and 2 for scissors \n ")
 rock = '''
     _______
 ---'   ____)
@@ -23,49 +24,22 @@ scissors = '''
       (____)
 ---.__(___)
 '''
-print("welcome to the rock paper seizure game. Type 0 for rock, 1 for paper and 2 for scissors \n ")
 choice = int(input())
 comp_choice = random.randint(0,2)
+art = [rock, paper, scissors]
 print(comp_choice)
-if choice == 0:
-  print(rock)
-  if comp_choice == 0:
-    print(rock)
-    print("draw")
-  elif comp_choice == 1 :
-    print(scissors)
-    print("loose")
-  else:
-    print(paper)
-    print("won")
-elif choice == 1:
-  print(scissors)
-  if comp_choice == 0:
-    print(rock)
-    print("win")
-  elif comp_choice == 1 :
-    print(paper)
-    print("draw")
-  else:
-    print(scissors)
-    print("loose")
+if choice < 0 or choice > 2 :
+  print ("please enter a valid choice")
 else:
-  print(paper)
-  if comp_choice == 0:
-    print(rock)
-    print("loose")
-  elif comp_choice == 1 :
-    print(scissors)
-    print("won")
+  if choice == 0 and comp_choice == 2 :
+      print(f"you choose \n {art[choice]}")
+      print(f"computer choose \n {art[comp_choice]}")
+      print("you win")
+  elif choice > comp_choice : 
+      print(f"you choose \n {art[choice]}")
+      print(f"computer choose \n {art[comp_choice]}")
+      print("you win")
   else:
-    print(paper)
-    print("draw")
-
-
-
-
-
-
-
-
-
+      print(f"you choose \n {art[choice]}")
+      print(f"computer choose \n {art[comp_choice]}")
+      print("you lost")
