@@ -1,0 +1,77 @@
+### Importing Random module
+import random 
+###Defining Hangman stages in ASCII to print while loosing life
+hangmanstages = ['''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+###Defining the list of the words to guess from one word
+wordlist = ["Maharastra", "MadhyaPradesh", "Gujarat"]
+##Randomly choose one word
+choosen_word = random.choice(wordlist).lower()
+word_lenght = len(choosen_word)
+###Defining the word array to hold guessed letter
+guess_word = []
+###variable to count Remaining life and lostlife 
+life = len(hangmanstages)
+lostlife = 0
+###Filling guess word with "_" which can be replaced by the exact guessed letter
+for i in range(word_lenght):
+    guess_word.append("_")
+print(guess_word)
+### Run while loop untill gameover variable value changes to true
+gameover = False
+while not gameover :
+    guess = input("Enter letter:")
+    ### if guess word exist in the choosen word then replace "_" with the guessed letter
+    if guess in choosen_word:
+        for j in range(word_lenght) :
+            if guess == choosen_word[j]:
+                guess_word[j] = guess
+                print(guess_word)
+    ### if guess word does not not have any vacant letter "_" then user won the game
+        if '_' not in guess_word :
+            print("you won")
+            gameover = True
+    else : 
+    ### if guess letter is exist in the choosen word then decrease the life by 1
+        lostlife = lostlife + 1
+        life = life - 1
+        print(f"life left: {life}")
+        print(hangmanstages[lostlife - 1])
+        if life == 0 :
+            gameover = True
+            print ("Game Over")
+print("Game is ended here")
