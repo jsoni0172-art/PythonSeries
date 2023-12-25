@@ -1,0 +1,55 @@
+import string
+
+abc = string.ascii_lowercase
+alphabet = []
+for i in range(len(abc)):
+    alphabet.append(abc[i])
+
+print("::::::Welcome to ceasor cipher encryption and decryption Game::::::")
+choice = input("Please enter your choice. Type 'encode' for encryption and 'decode' for decryption:::::: ")
+usertext = input("Enter the text: ")
+shift = int(input("Enter shift number: "))
+
+def encryption ( text, shift):
+    secret_text = []
+    lenght = len(text)
+    for i in range(lenght):
+        position = alphabet.index(text[i])
+        if position < (len(alphabet) - shift):
+            position = position + shift
+        else:
+            position = position + shift - len(alphabet)
+        secret_text.append(alphabet[position])
+    encrypted_text = "".join(secret_text)
+    print(encrypted_text)
+
+def decryption(text, shift):
+    plain_text = []
+    lenght = len(text)
+    for i in range(lenght):
+        position = alphabet.index(text[i])
+        if position > shift :
+            position = position - shift
+        else:
+            position = len(alphabet) + position - shift
+        plain_text.append(alphabet[position])
+    decrypted_text = "".join(plain_text)
+    print(decrypted_text)
+
+
+def ceasor_cipher(action, usertext, shift):
+    if action == "encode":
+        encryption(usertext, shift)
+    elif action == "decode":
+        decryption(usertext, shift)
+    else:
+        print("please select valid choice")
+
+ceasor_cipher(choice, usertext, shift)
+
+
+    
+
+
+
+
